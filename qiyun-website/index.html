@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>启云科技 - 让数字化更简单</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f5ff', 100: '#e6efff', 200: '#c2d9ff', 300: '#9ebfff',
+                            400: '#6a9eff', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8',
+                            800: '#1e40af', 900: '#1e3a8a', 950: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Noto Sans SC', system-ui, sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1e40af 100%); }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="bg-slate-50">
+    <!-- 导航 -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-sm border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-cloud text-white text-sm"></i>
+                    </div>
+                    <span class="text-white font-bold text-lg">启云科技</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-white/80 hover:text-white text-sm font-medium">首页</a>
+                    <a href="#services" class="text-white/80 hover:text-white text-sm font-medium">服务</a>
+                    <a href="#cases" class="text-white/80 hover:text-white text-sm font-medium">案例</a>
+                    <a href="#contact" class="text-white/80 hover:text-white text-sm font-medium">联系</a>
+                </div>
+                <a href="#contact" class="hidden md:block px-5 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium rounded-lg transition-colors">免费咨询</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center gradient-bg pt-16">
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-20 left-10 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-10 w-80 h-80 bg-cyan-500 rounded-full blur-3xl"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-8">
+                <span class="w-2 h-2 bg-cyan-400 rounded-full mr-2 animate-pulse"></span>
+                <span class="text-white/80 text-sm">重庆本土专业开发团队</span>
+            </div>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+                专业的软件定制<br/>
+                <span class="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">开发服务商</span>
+            </h1>
+            <p class="text-lg sm:text-xl text-white/70 mb-10 max-w-2xl mx-auto">
+                小程序 · APP · 网站 一站式开发解决方案<br/>
+                让数字化更简单，助力企业转型升级
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#contact" class="px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-xl transition-all hover:-translate-y-1 shadow-lg">免费咨询</a>
+                <a href="#cases" class="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl border border-white/30 transition-all">查看案例</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务 -->
+    <section id="services" class="py-20 md:py-32 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-blue-600 font-semibold text-sm uppercase">Our Services</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-4">我们的服务</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto">全方位满足您的数字化需求</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 card-hover">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-mobile-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">小程序开发</h3>
+                    <p class="text-slate-600 mb-4">微信/支付宝/抖音小程序定制开发，快速触达用户</p>
+                    <a href="#contact" class="text-blue-600 font-semibold">了解详情 →</a>
+                </div>
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 card-hover">
+                    <div class="w-16 h-16 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-mobile text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">APP开发</h3>
+                    <p class="text-slate-600 mb-4">iOS/Android原生开发、Flutter跨平台开发</p>
+                    <a href="#contact" class="text-cyan-600 font-semibold">了解详情 →</a>
+                </div>
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 card-hover">
+                    <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-globe text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">网站开发</h3>
+                    <p class="text-slate-600 mb-4">企业官网、电商平台、管理系统定制开发</p>
+                    <a href="#contact" class="text-indigo-600 font-semibold">了解详情 →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 案例 -->
+    <section id="cases" class="py-20 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
+                <div>
+                    <span class="text-blue-600 font-semibold text-sm uppercase">Portfolio</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2">精选案例</h2>
+                </div>
+                <a href="#" class="mt-4 md:mt-0 text-blue-600 font-semibold">查看更多 →</a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="group cursor-pointer">
+                    <div class="relative overflow-hidden rounded-2xl mb-4">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=450&fit=crop" class="w-full aspect-[4/3] object-cover group-hover:scale-110 transition-transform duration-500" />
+                        <div class="absolute top-4 left-4 flex gap-2">
+                            <span class="px-3 py-1 bg-white/90 text-blue-700 text-xs font-medium rounded-full">电商</span>
+                            <span class="px-3 py-1 bg-white/90 text-cyan-700 text-xs font-medium rounded-full">小程序</span>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors">智慧商城小程序</h3>
+                    <p class="text-slate-500 text-sm">某知名零售品牌</p>
+                </div>
+                <div class="group cursor-pointer">
+                    <div class="relative overflow-hidden rounded-2xl mb-4">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=450&fit=crop" class="w-full aspect-[4/3] object-cover group-hover:scale-110 transition-transform duration-500" />
+                        <div class="absolute top-4 left-4 flex gap-2">
+                            <span class="px-3 py-1 bg-white/90 text-blue-700 text-xs font-medium rounded-full">企业</span>
+                            <span class="px-3 py-1 bg-white/90 text-cyan-700 text-xs font-medium rounded-full">网站</span>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors">企业管理系统</h3>
+                    <p class="text-slate-500 text-sm">某制造企业</p>
+                </div>
+                <div class="group cursor-pointer">
+                    <div class="relative overflow-hidden rounded-2xl mb-4">
+                        <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=600&h=450&fit=crop" class="w-full aspect-[4/3] object-cover group-hover:scale-110 transition-transform duration-500" />
+                        <div class="absolute top-4 left-4 flex gap-2">
+                            <span class="px-3 py-1 bg-white/90 text-blue-700 text-xs font-medium rounded-full">教育</span>
+                            <span class="px-3 py-1 bg-white/90 text-cyan-700 text-xs font-medium rounded-full">APP</span>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors">在线教育APP</h3>
+                    <p class="text-slate-500 text-sm">某教育机构</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 数据 -->
+    <section class="py-20 md:py-24 bg-gradient-to-r from-blue-900 to-blue-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
+                <div>
+                    <div class="text-4xl md:text-5xl font-bold mb-2">200+</div>
+                    <div class="text-white/70">服务客户</div>
+                </div>
+                <div>
+                    <div class="text-4xl md:text-5xl font-bold mb-2">98%</div>
+                    <div class="text-white/70">客户满意度</div>
+                </div>
+                <div>
+                    <div class="text-4xl md:text-5xl font-bold mb-2">50+</div>
+                    <div class="text-white/70">成功案例</div>
+                </div>
+                <div>
+                    <div class="text-4xl md:text-5xl font-bold mb-2">5年+</div>
+                    <div class="text-white/70">行业经验</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系 -->
+    <section id="contact" class="py-20 md:py-32 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">联系我们</h2>
+                <p class="text-slate-600">获取专业的软件开发咨询服务</p>
+            </div>
+            <div class="max-w-2xl mx-auto bg-white rounded-2xl p-8 shadow-lg">
+                <form class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">姓名 *</label>
+                            <input type="text" class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-500" placeholder="请输入您的姓名">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">电话 *</label>
+                            <input type="tel" class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-500" placeholder="请输入您的电话">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-2">需求类型</label>
+                        <select class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-500">
+                            <option>小程序开发</option>
+                            <option>APP开发</option>
+                            <option>网站开发</option>
+                            <option>其他</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-2">需求描述 *</label>
+                        <textarea rows="4" class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-500 resize-none" placeholder="请描述您的需求..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-xl transition-colors">
+                        提交咨询
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-slate-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-cloud text-white text-sm"></i>
+                        </div>
+                        <span class="font-bold text-lg">启云科技</span>
+                    </div>
+                    <p class="text-white/60 text-sm">专业的软件定制开发服务商</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4">快速链接</h3>
+                    <ul class="space-y-2 text-sm text-white/60">
+                        <li><a href="#home" class="hover:text-white">首页</a></li>
+                        <li><a href="#services" class="hover:text-white">服务</a></li>
+                        <li><a href="#cases" class="hover:text-white">案例</a></li>
+                        <li><a href="#contact" class="hover:text-white">联系</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4">服务项目</h3>
+                    <ul class="space-y-2 text-sm text-white/60">
+                        <li>小程序开发</li>
+                        <li>APP开发</li>
+                        <li>网站开发</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4">联系我们</h3>
+                    <ul class="space-y-2 text-sm text-white/60">
+                        <li><i class="fas fa-phone mr-2"></i>400-xxx-xxxx</li>
+                        <li><i class="fas fa-envelope mr-2"></i>hello@qiyun.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/10 mt-12 pt-8 text-center text-sm text-white/40">
+                <p>&copy; 2024 重庆启云网络科技有限公司 版权所有</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

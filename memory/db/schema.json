@@ -1,0 +1,18 @@
+{
+  "schema": "shared_memory_v1",
+  "created_at": "2024-03-11T17:30:00Z",
+  "tables": {
+    "conversations": {
+      "description": "对话记录表",
+      "fields": ["id", "session_id", "role", "content", "timestamp"]
+    },
+    "projects": {
+      "description": "项目记忆表", 
+      "fields": ["id", "name", "status", "prd", "design", "code", "timestamp"]
+    },
+    "knowledge": {
+      "description": "知识库表",
+      "fields": ["id", "key", "value", "type", "timestamp"]
+    }
+  }
+}

@@ -1,0 +1,60 @@
+# 飞书群组-角色路由配置
+# 七人智能体团队 - 云壹至云柒
+
+routes:
+  # 测试群组 → 云壹（CEO助理）
+  - chat_id: "oc_8b2255f8535f346d8fd2ff1344891cb3"
+    agent: "云壹"
+    role: "CEO助理"
+    description: "统筹一切，替老板分忧解难"
+    model: "moonshot/kimi-k2.5"
+  
+  # 项目管理群 → 云贰（项目经理）
+  - chat_id: "oc_pm"
+    agent: "云贰"
+    role: "项目经理"
+    description: "项目规划、进度管理、资源协调、风险控制"
+    model: "moonshot/kimi-k2.5"
+    
+  # 产品讨论群 → 云叁（产品经理）
+  - chat_id: "oc_product"
+    agent: "云叁"
+    role: "产品经理"
+    description: "需求分析、产品规划、用户研究、PRD撰写"
+    model: "moonshot/kimi-k2.5"
+    
+  # 设计评审群 → 云肆（UI设计师）
+  - chat_id: "oc_design"
+    agent: "云肆"
+    role: "UI设计师"
+    description: "UI/UX设计、视觉创作、交互设计、设计规范"
+    model: "moonshot/kimi-k2.5"
+    fallback_model: "通义万相"
+    
+  # 前端开发群 → 云伍（前端开发工程师）
+  - chat_id: "oc_frontend"
+    agent: "云伍"
+    role: "前端开发工程师"
+    description: "前端开发、组件设计、页面实现、性能优化"
+    model: "moonshot/kimi-k2.5"
+    
+  # 后端开发群 → 云陆（后端开发工程师）
+  - chat_id: "oc_backend"
+    agent: "云陆"
+    role: "后端开发工程师"
+    description: "架构设计、API开发、数据库设计、服务部署"
+    model: "moonshot/kimi-k2.5"
+    
+  # 测试质量群 → 云柒（测试工程师）
+  - chat_id: "oc_qa"
+    agent: "云柒"
+    role: "测试工程师"
+    description: "测试用例、质量保障、自动化测试、Bug追踪"
+    model: "moonshot/kimi-k2.5"
+
+# 默认路由（未匹配到特定群组时）→ 云壹（CEO助理）
+default:
+  agent: "云壹"
+  role: "CEO助理"
+  description: "统筹一切，替老板分忧解难"
+  model: "moonshot/kimi-k2.5"

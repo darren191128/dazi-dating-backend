@@ -1,0 +1,134 @@
+{
+  "conversations": [
+    {
+      "id": 1773283768189,
+      "session_id": "task-1773283768189",
+      "role": "CEO",
+      "content": "分配任务给云捌: 制定一个官网开发项目的里程碑计划",
+      "timestamp": "2026-03-12T02:49:28.189Z"
+    },
+    {
+      "id": 1773286532507,
+      "session_id": "agent-test-2026-03-12",
+      "role": "云捌",
+      "content": "创建智能体协同测试项目，制定项目计划",
+      "timestamp": "2026-03-12T03:35:32.507Z"
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "name": "重庆启云网络科技有限公司官网",
+      "status": "设计中",
+      "prd": "/projects/qiyun-network/prd.md",
+      "design": "/projects/qiyun-network/design/design-system.md",
+      "code": "/projects/qiyun-network/demo/index.html",
+      "timestamp": "2024-03-11T16:30:00Z"
+    },
+    {
+      "id": 1773286560639,
+      "name": "智能体协同测试",
+      "status": "执行中",
+      "prd": "/workspace/智能体协同测试项目计划.md",
+      "design": "",
+      "code": "",
+      "timestamp": "2026-03-12T03:36:00.639Z",
+      "updated_at": "2026-03-12T03:36:00Z"
+    },
+    {
+      "id": 1773290271179,
+      "name": "若山律师事务所",
+      "status": "规划中",
+      "prd": "/projects/ruoshan-law/README.md",
+      "design": "",
+      "code": "/projects/ruoshan-law/src",
+      "timestamp": "2026-03-12T04:37:51.179Z"
+    }
+  ],
+  "knowledge": [
+    {
+      "id": 1,
+      "key": "company_name",
+      "value": "重庆启云网络科技有限公司",
+      "type": "company",
+      "timestamp": "2024-03-11T17:00:00Z"
+    },
+    {
+      "id": 2,
+      "key": "team_structure",
+      "value": "云壹(CEO)、云贰(PM)、云叁(PD)、云肆(UI)、云伍(FE)、云陆(BE)、云柒(QA)",
+      "type": "team",
+      "timestamp": "2024-03-11T13:00:00Z"
+    },
+    {
+      "id": 3,
+      "key": "project_workflow",
+      "value": "标准项目开发流程：云壹接收任务→通知云捌项目分析（含前台界面/动效、后台CMS界面/功能、数据库、API）→云捌输出整体需求→通知云肆UI设计（输出UI标准+设计图）→云肆完成后通知云伍/云陆→云伍/云陆先审核云肆/云捌输出，不符则通知云壹统筹校对→确认无误后开发→云伍负责前台PC+手机自适应+后台CMS前端，云陆负责后台功能+API+数据库→双方自检→完成",
+      "type": "workflow",
+      "timestamp": "2026-03-12T06:52:00Z"
+    },
+    {
+      "id": 4,
+      "key": "tech_stack",
+      "value": "Vue3 + Java",
+      "type": "technology",
+      "timestamp": "2026-03-12T06:52:00Z"
+    },
+    {
+      "id": 5,
+      "key": "website_components",
+      "value": "完整网站包含：前台PC端+手机自适应、后台管理系统(CMS)、数据库",
+      "type": "standard",
+      "timestamp": "2026-03-12T06:52:00Z"
+    },
+    {
+      "id": 6,
+      "key": "lesson_ui_timeout",
+      "value": "UI设计任务超时教训：1)任务粒度要小，按页面拆分；2)设置合理超时(20-30分钟/页面)；3)及时保存中间成果；4)复杂任务考虑并行而非串行",
+      "type": "lesson",
+      "timestamp": "2026-03-12T07:41:00Z"
+    },
+    {
+      "id": 7,
+      "key": "continuous_improvement",
+      "value": "持续改进机制已建立：1)实时问题记录；2)定期总结复盘；3)知识共享同步；4)流程持续优化。所有智能体都应记录问题、总结经验、促进团队进化",
+      "type": "system",
+      "timestamp": "2026-03-12T07:44:00Z"
+    },
+    {
+      "id": 8,
+      "key": "cms_function_standard",
+      "value": "CMS后台管理系统必须包含：1)系统管理(用户/角色/权限)；2)内容管理(文章/轮播图/页面)；3)业务管理(律师/案例/服务)；4)客户互动(咨询/预约/评价)；5)数据统计(访问/咨询/内容)；6)系统工具(文件/缓存/日志/备份)",
+      "type": "standard",
+      "timestamp": "2026-03-12T07:57:00Z"
+    },
+    {
+      "id": 9,
+      "key": "yunsi_timeout_solution",
+      "value": "云肆(UI设计)超时解决方案：1)原因：Kimi生成大量HTML代码慢+任务粒度过大；2)推荐方案：云肆输出设计标准+页面设计说明(非完整HTML)，由云伍实现代码；3)已验证：Qwen-Plus模型1分40秒完成（Kimi超时）；4)避免：一次要求多个完整HTML页面",
+      "type": "solution",
+      "timestamp": "2026-03-12T08:03:00Z"
+    },
+    {
+      "id": 10,
+      "key": "model_selection_ui",
+      "value": "UI设计任务模型选择：Kimi不适合代码生成任务（易超时），Qwen-Plus更适合。后续UI设计任务统一使用Qwen-Plus模型",
+      "type": "standard",
+      "timestamp": "2026-03-12T08:15:00Z"
+    },
+    {
+      "id": 11,
+      "key": "subagent_execution_issue",
+      "value": "子智能体执行问题：云伍/云陆未实际完善代码，仅做检查。根因：1)任务使用检查/完善等软性词汇；2)未指定具体修改文件；3)未要求输出修改清单。修正：必须使用修改/创建等强制词汇，指定具体文件路径，要求列出修改清单",
+      "type": "lesson",
+      "timestamp": "2026-03-12T08:26:00Z"
+    },
+    {
+      "id": 12,
+      "key": "yunqi_test_issue",
+      "value": "云柒测试问题已解决：根因是任务过于庞大+模型不匹配。解决方案：1)测试任务拆分执行；2)使用GLM-4.7进行分析类任务；3)建立验证清单；4)复杂验证由主智能体执行。已验证项目完整性",
+      "type": "lesson",
+      "timestamp": "2026-03-12T09:59:00Z"
+    }
+  ]
+}

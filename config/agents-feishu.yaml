@@ -1,0 +1,88 @@
+# 七人智能体团队 - 独立飞书配置
+# 每个角色拥有独立的飞书应用配置
+
+agents:
+  # 云壹 - CEO助理 (主代理，使用默认配置)
+  云壹:
+    enabled: true
+    is_primary: true
+    feishu:
+      app_id: "cli_a9249470163a1cd3"
+      app_secret: "7BT9O2aTu2YLts9V84Md5bBTiqludlza"
+      domain: feishu
+      connection_mode: websocket
+    role: "CEO助理"
+    description: "统筹一切，替老板分忧解难"
+    model: "moonshot/kimi-k2.5"
+    
+  # 云贰 - 项目经理
+  云贰:
+    enabled: true
+    feishu:
+      app_id: "cli_a93a425b7c78dcd2"
+      app_secret: "6fnFEaRMeAo2oyIXCU57ncO34kTxDAi7"
+      domain: feishu
+      connection_mode: websocket
+    role: "项目经理"
+    description: "项目规划、进度管理、资源协调、风险控制"
+    model: "moonshot/kimi-k2.5"
+    
+  # 云叁 - 产品经理
+  云叁:
+    enabled: true
+    feishu:
+      app_id: "cli_a93a43498eb9dcc7"
+      app_secret: "9yn7Uyhu0rI1zlRo9QMhrDuMWOIvM2vf"
+      domain: feishu
+      connection_mode: websocket
+    role: "产品经理"
+    description: "需求分析、产品规划、用户研究、PRD撰写"
+    model: "moonshot/kimi-k2.5"
+    
+  # 云肆 - UI设计师
+  云肆:
+    enabled: true
+    feishu:
+      app_id: "cli_a93bbe6cc4399cc6"
+      app_secret: "diP0ICIvWeR6QpOTOHgHxhVqNtcEyTA3"
+      domain: feishu
+      connection_mode: websocket
+    role: "UI设计师"
+    description: "UI/UX设计、视觉创作、交互设计、设计规范"
+    model: "moonshot/kimi-k2.5"
+    
+  # 云伍 - 前端开发工程师
+  云伍:
+    enabled: true
+    feishu:
+      app_id: "cli_a93bbe95a7a25cb2"
+      app_secret: "cUM04pWb4dzf4oVfWFTVfbanstSKVaYH"
+      domain: feishu
+      connection_mode: websocket
+    role: "前端开发工程师"
+    description: "前端开发、组件设计、页面实现、性能优化"
+    model: "moonshot/kimi-k2.5"
+    
+  # 云陆 - 后端开发工程师
+  云陆:
+    enabled: true
+    feishu:
+      app_id: "cli_a93bbf1136789cc7"
+      app_secret: "JGK5RCQa3h8Je4qNj1X64eglPDXv450c"
+      domain: feishu
+      connection_mode: websocket
+    role: "后端开发工程师"
+    description: "架构设计、API开发、数据库设计、服务部署"
+    model: "moonshot/kimi-k2.5"
+    
+  # 云柒 - 测试工程师
+  云柒:
+    enabled: true
+    feishu:
+      app_id: "cli_a93bbf3ad2389cb3"
+      app_secret: "NM7AoMIRr913tXnNSC8MfeiOPJiQFc7k"
+      domain: feishu
+      connection_mode: websocket
+    role: "测试工程师"
+    description: "测试用例、质量保障、自动化测试、Bug追踪"
+    model: "moonshot/kimi-k2.5"

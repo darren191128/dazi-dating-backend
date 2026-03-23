@@ -1,0 +1,304 @@
+# 多模型智能体系统配置
+# Multi-Model Agent System Configuration
+
+# ==================== 模型定义 ====================
+models:
+  # Moonshot Kimi K2.5 - 主力模型
+  moonshot/kimi-k2.5:
+    name: "Kimi K2.5"
+    provider: "moonshot"
+    model_id: "kimi-k2.5"
+    base_url: "https://api.moonshot.cn/v1"
+    api_key_env: "MOONSHOT_API_KEY"
+    max_tokens: 8192
+    temperature: 0.7
+    priority: 1
+    capabilities:
+      - text_generation
+      - code_generation
+      - reasoning
+      - analysis
+      - planning
+    roles:
+      - 产品经理
+      - 设计经理
+      - 前端经理
+      - 后端经理
+      - 测试经理
+    cost_tier: "standard"
+    status: "active"
+
+  # 通义万相 - 图像生成
+  tongyi/wanxiang:
+    name: "通义万相"
+    provider: "aliyun"
+    model_id: "qwen-image-2.0"
+    base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+    api_key_env: "DASHSCOPE_API_KEY"
+    max_tokens: 2048
+    temperature: 0.8
+    priority: 2
+    capabilities:
+      - image_generation
+      - image_editing
+      - visual_design
+    roles:
+      - 设计经理
+    task_types:
+      - image_generation
+      - ui_design
+      - visual_creation
+    cost_tier: "standard"
+    status: "active"
+
+  # 文心一言 - 备选模型
+  baidu/ernie:
+    name: "文心一言"
+    provider: "baidu"
+    model_id: "ernie-bot-4"
+    base_url: "https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop"
+    api_key_env: "BAIDU_API_KEY"
+    max_tokens: 4096
+    temperature: 0.7
+    priority: 3
+    capabilities:
+      - text_generation
+      - code_generation
+      - reasoning
+      - chinese_optimization
+    roles:
+      - 测试经理
+    cost_tier: "low"
+    status: "active"
+
+  # Zhipu GLM-4.7 - 深度推理模型
+  zhipu/glm-4.7:
+    name: "GLM-4.7"
+    provider: "zhipu"
+    model_id: "glm-4.7"
+    base_url: "https://open.bigmodel.cn/api/paas/v4"
+    api_key_env: "ZHIPU_API_KEY"
+    max_tokens: 8192
+    temperature: 0.7
+    priority: 4
+    capabilities:
+      - text_generation
+      - code_generation
+      - reasoning
+      - analysis
+      - planning
+      - deep_thinking
+      - reasoning_content  # 支持思维链输出
+    roles:
+      - 项目与产品负责人
+    cost_tier: "standard"
+    status: "active"
+    features:
+      reasoning_content: true  # GLM-4.7 支持显式思维链
+
+  # 阿里云 Qwen-Plus - 代码与工程模型
+  aliyun/qwen-plus:
+    name: "Qwen-Plus"
+    provider: "aliyun"
+    model_id: "qwen-plus"
+    base_url: "https://dashscope.aliyuncs.com/api/v1"
+    api_key_env: "DASHSCOPE_API_KEY"
+    max_tokens: 8192
+    temperature: 0.7
+    priority: 5
+    capabilities:
+      - text_generation
+      - code_generation
+      - reasoning
+      - chinese_optimization
+      - mathematics
+      - engineering
+    roles:
+      - 前端经理
+      - 后端经理
+      - 测试经理
+    cost_tier: "low"
+    status: "active"
+
+# ==================== 角色-模型映射 ====================
+role_model_mapping:
+  产品经理:
+    default: "moonshot/kimi-k2.5"
+    fallback:
+      - "baidu/ernie"
+    task_routing:
+      default: "moonshot/kimi-k2.5"
+
+  设计经理:
+    default: "moonshot/kimi-k2.5"
+    fallback:
+      - "moonshot/kimi-k2.5"
+    task_routing:
+      default: "moonshot/kimi-k2.5"
+      image_generation: "tongyi/wanxiang"
+      ui_design: "tongyi/wanxiang"
+      visual_creation: "tongyi/wanxiang"
+
+  前端经理:
+    default: "aliyun/qwen-plus"
+    fallback:
+      - "moonshot/kimi-k2.5"
+    task_routing:
+      default: "aliyun/qwen-plus"
+      ui_implementation: "aliyun/qwen-plus"
+      component_design: "aliyun/qwen-plus"
+
+  后端经理:
+    default: "aliyun/qwen-plus"
+    fallback:
+      - "moonshot/kimi-k2.5"
+    task_routing:
+      default: "aliyun/qwen-plus"
+      api_design: "aliyun/qwen-plus"
+      database_design: "aliyun/qwen-plus"
+      algorithm_implementation: "aliyun/qwen-plus"
+
+  测试经理:
+    default: "aliyun/qwen-plus"
+    fallback:
+      - "moonshot/kimi-k2.5"
+    task_routing:
+      default: "aliyun/qwen-plus"
+      test_case_generation: "aliyun/qwen-plus"
+      bug_analysis: "aliyun/qwen-plus"
+      quality_assurance: "aliyun/qwen-plus"
+
+  项目与产品负责人:
+    default: "zhipu/glm-4.7"
+    fallback:
+      - "moonshot/kimi-k2.5"
+    task_routing:
+      default: "zhipu/glm-4.7"
+      project_management: "zhipu/glm-4.7"
+      product_analysis: "zhipu/glm-4.7"
+      requirements_analysis: "zhipu/glm-4.7"
+      planning: "zhipu/glm-4.7"
+
+# ==================== 模型切换规则 ====================
+routing_rules:
+  # 基于任务类型的路由
+  task_based:
+    image_generation:
+      primary: "tongyi/wanxiang"
+      fallback: "moonshot/kimi-k2.5"
+    code_generation:
+      primary: "moonshot/kimi-k2.5"
+      fallback: "baidu/ernie"
+    text_analysis:
+      primary: "moonshot/kimi-k2.5"
+      fallback: "baidu/ernie"
+    planning:
+      primary: "moonshot/kimi-k2.5"
+      fallback: "baidu/ernie"
+
+  # 基于内容语言的路由
+  language_based:
+    chinese:
+      prefer: "baidu/ernie"
+      fallback: "moonshot/kimi-k2.5"
+    english:
+      prefer: "moonshot/kimi-k2.5"
+      fallback: "baidu/ernie"
+    mixed:
+      prefer: "moonshot/kimi-k2.5"
+      fallback: "baidu/ernie"
+
+  # 基于复杂度的路由
+  complexity_based:
+    simple:
+      model: "baidu/ernie"
+      max_tokens: 2048
+    medium:
+      model: "moonshot/kimi-k2.5"
+      max_tokens: 4096
+    complex:
+      model: "moonshot/kimi-k2.5"
+      max_tokens: 8192
+
+# ==================== 备用模型策略 ====================
+fallback_strategy:
+  # 故障转移配置
+  failover:
+    enabled: true
+    max_retries: 3
+    retry_delay_ms: 1000
+    timeout_ms: 30000
+    
+  # 降级策略
+  degradation:
+    enabled: true
+    on_error: "switch_to_fallback"
+    on_timeout: "switch_to_fallback"
+    on_rate_limit: "queue_and_retry"
+
+  # 负载均衡
+  load_balancing:
+    enabled: false
+    strategy: "round_robin"
+
+  # 成本优化
+  cost_optimization:
+    enabled: true
+    simple_tasks_use_cheaper_model: true
+    threshold_tokens: 1000
+
+# ==================== 系统配置 ====================
+system:
+  # 默认模型
+  default_model: "moonshot/kimi-k2.5"
+  
+  # 模型选择模式: auto | manual | hybrid
+  selection_mode: "auto"
+  
+  # 日志配置
+  logging:
+    level: "info"
+    log_model_calls: true
+    log_routing_decisions: true
+    
+  # 缓存配置
+  cache:
+    enabled: true
+    ttl_seconds: 3600
+    max_entries: 1000
+    
+  # 监控配置
+  monitoring:
+    enabled: true
+    track_latency: true
+    track_cost: true
+    track_errors: true
+
+# ==================== API 配置模板 ====================
+api_templates:
+  moonshot:
+    headers:
+      Content-Type: "application/json"
+      Authorization: "Bearer ${MOONSHOT_API_KEY}"
+    timeout: 60
+    retry_count: 3
+
+  aliyun:
+    headers:
+      Content-Type: "application/json"
+      Authorization: "Bearer ${DASHSCOPE_API_KEY}"
+    timeout: 120
+    retry_count: 3
+
+  baidu:
+    headers:
+      Content-Type: "application/json"
+    timeout: 60
+    retry_count: 3
+
+  zhipu:
+    headers:
+      Content-Type: "application/json"
+      Authorization: "Bearer ${ZHIPU_API_KEY}"
+    timeout: 60
+    retry_count: 3

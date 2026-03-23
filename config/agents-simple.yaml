@@ -1,0 +1,48 @@
+# 七人智能体团队 - 简化架构方案
+# 使用单飞书应用 + 子代理模式
+
+# 架构说明：
+# 1. 只使用云壹的飞书应用 (cli_a9249470163a1cd3) 接收所有消息
+# 2. 根据消息内容或@方式，创建对应角色的子代理处理
+# 3. 子代理以对应角色身份回复
+
+agents:
+  云壹:
+    role: "CEO助理"
+    description: "统筹一切，替老板分忧解难"
+    is_primary: true
+    
+  云贰:
+    role: "项目经理"
+    description: "项目规划、进度管理、资源协调、风险控制"
+    trigger_keywords: ["项目", "进度", "计划", "排期"]
+    
+  云叁:
+    role: "产品经理"
+    description: "需求分析、产品规划、用户研究、PRD撰写"
+    trigger_keywords: ["产品", "需求", "功能", "用户"]
+    
+  云肆:
+    role: "UI设计师"
+    description: "UI/UX设计、视觉创作、交互设计、设计规范"
+    trigger_keywords: ["设计", "UI", "UX", "界面", "视觉"]
+    
+  云伍:
+    role: "前端开发工程师"
+    description: "前端开发、组件设计、页面实现、性能优化"
+    trigger_keywords: ["前端", "页面", "组件", "React", "Vue"]
+    
+  云陆:
+    role: "后端开发工程师"
+    description: "架构设计、API开发、数据库设计、服务部署"
+    trigger_keywords: ["后端", "API", "数据库", "架构", "服务"]
+    
+  云柒:
+    role: "测试工程师"
+    description: "测试用例、质量保障、自动化测试、Bug追踪"
+    trigger_keywords: ["测试", "Bug", "质量", "用例", "自动化"]
+
+# 触发方式：
+# 1. @方式: @项目经理 分析需求
+# 2. 关键词: 项目进度怎么样了？
+# 3. 默认: 云壹(CEO助理) 处理

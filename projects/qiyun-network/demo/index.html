@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>重庆启云网络科技有限公司 - 科技创新 智领未来</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+            line-height: 1.6;
+            color: #334155;
+        }
+        
+        /* 导航 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 16px 0;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #fff;
+        }
+        
+        .logo span {
+            color: #0066FF;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: #CBD5E1;
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #0066FF;
+        }
+        
+        /* Hero区 */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0A1628 0%, #1E3A5F 50%, #0A1628 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 24px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.1) 0%, transparent 50%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+        
+        .hero-tag {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(0, 102, 255, 0.2);
+            border: 1px solid rgba(0, 102, 255, 0.3);
+            border-radius: 20px;
+            color: #00D4AA;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            color: #CBD5E1;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: #0066FF;
+            color: #fff;
+        }
+        
+        .btn-primary:hover {
+            background: #0052CC;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* 服务区块 */
+        .services {
+            padding: 100px 24px;
+            background: #fff;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+        
+        .section-header h2 {
+            font-size: 40px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 16px;
+        }
+        
+        .section-header p {
+            font-size: 18px;
+            color: #64748B;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+        
+        .service-card {
+            padding: 40px 32px;
+            background: #F8FAFC;
+            border-radius: 16px;
+            transition: all 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0066FF 0%, #00D4AA 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 28px;
+        }
+        
+        .service-card h3 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #0F172A;
+            margin-bottom: 12px;
+        }
+        
+        .service-card p {
+            color: #64748B;
+            font-size: 15px;
+        }
+        
+        /* 数据展示 */
+        .stats {
+            padding: 80px 24px;
+            background: #0A1628;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 48px;
+            text-align: center;
+        }
+        
+        .stat-item h3 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #00D4AA;
+            margin-bottom: 8px;
+        }
+        
+        .stat-item p {
+            color: #CBD5E1;
+            font-size: 16px;
+        }
+        
+        /* CTA区块 */
+        .cta {
+            padding: 100px 24px;
+            background: linear-gradient(135deg, #0066FF 0%, #6366F1 100%);
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 40px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 16px;
+        }
+        
+        .cta p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 32px;
+        }
+        
+        .btn-white {
+            background: #fff;
+            color: #0066FF;
+        }
+        
+        .btn-white:hover {
+            background: #F8FAFC;
+        }
+        
+        /* 页脚 */
+        .footer {
+            padding: 60px 24px 30px;
+            background: #0A1628;
+            color: #CBD5E1;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+        
+        .footer-section h4 {
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-section a {
+            color: #94A3B8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: #0066FF;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #64748B;
+            font-size: 14px;
+        }
+        
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .section-header h2 {
+                font-size: 28px;
+            }
+            
+            .stat-item h3 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">启云<span>科技</span></div>
+            <ul class="nav-links">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#services">服务</a></li>
+                <li><a href="#solutions">解决方案</a></li>
+                <li><a href="#cases">案例</a></li>
+                <li><a href="#about">关于我们</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero区 -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-tag">🚀 科技创新 · 智领未来</div>
+            <h1>让科技赋能<br>企业数字化转型</h1>
+            <p>重庆启云网络科技有限公司，专注于为企业提供领先的数字化解决方案，助力客户在数字经济时代赢得竞争优势。</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">免费咨询</a>
+                <a href="#services" class="btn btn-secondary">了解服务</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务区块 -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>核心服务</h2>
+                <p>为企业提供全方位的数字化解决方案，从战略规划到技术落地，一站式服务保障项目成功</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3>软件开发</h3>
+                    <p>企业级应用定制开发，涵盖Web、移动端、小程序等多平台，采用敏捷开发模式，快速交付高质量产品。</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">☁️</div>
+                    <h3>云服务</h3>
+                    <p>提供云架构设计、迁移、运维全流程服务，帮助企业降低IT成本，提升系统稳定性和可扩展性。</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🤖</div>
+                    <h3>AI智能化</h3>
+                    <p>基于人工智能技术的智能客服、数据分析、流程自动化解决方案，助力企业实现智能化升级。</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔒</div>
+                    <h3>网络安全</h3>
+                    <p>提供全面的网络安全评估、防护方案设计和安全运维服务，保障企业数据和系统安全。</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>数据分析</h3>
+                    <p>大数据平台搭建、数据挖掘分析、可视化报表开发，让数据驱动业务决策。</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎯</div>
+                    <h3>IT咨询</h3>
+                    <p>为企业提供数字化转型战略规划、技术选型、架构设计等专业咨询服务。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 数据展示 -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>500+</h3>
+                    <p>服务客户</p>
+                </div>
+                <div class="stat-item">
+                    <h3>98%</h3>
+                    <p>客户满意度</p>
+                </div>
+                <div class="stat-item">
+                    <h3>50+</h3>
+                    <p>技术专家</p>
+                </div>
+                <div class="stat-item">
+                    <h3>10年</h3>
+                    <p>行业经验</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA区块 -->
+    <section class="cta" id="contact">
+        <div class="container">
+            <h2>开启您的数字化之旅</h2>
+            <p>立即联系我们，获取专属的数字化解决方案</p>
+            <a href="mailto:contact@qiyun.tech" class="btn btn-white">立即咨询</a>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>关于启云</h4>
+                <p style="color: #94A3B8; line-height: 1.8;">重庆启云网络科技有限公司是一家专注于企业数字化转型的科技公司，致力于为客户提供领先的技术解决方案。</p>
+            </div>
+            <div class="footer-section">
+                <h4>快速链接</h4>
+                <ul>
+                    <li><a href="#services">核心服务</a></li>
+                    <li><a href="#solutions">解决方案</a></li>
+                    <li><a href="#cases">成功案例</a></li>
+                    <li><a href="#about">关于我们</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>联系方式</h4>
+                <ul>
+                    <li>📍 重庆市渝北区</li>
+                    <li>📞 400-xxx-xxxx</li>
+                    <li>✉️ contact@qiyun.tech</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 重庆启云网络科技有限公司 版权所有 | 渝ICP备xxxxxxxx号</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>启云科技 - 设计系统展示</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f5ff',
+                            100: '#e6efff',
+                            200: '#c2d9ff',
+                            300: '#9ebfff',
+                            400: '#6a9eff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                            950: '#0f172a',
+                        },
+                        secondary: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        },
+                        accent: {
+                            light: '#38bdf8',
+                            DEFAULT: '#0ea5e9',
+                            dark: '#0284c7',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans SC', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'card': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)',
+                        'card-hover': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
+                        'glow': '0 0 20px rgba(59, 130, 246, 0.3)',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        /* 设计系统基础样式 */
+        :root {
+            --color-primary: #1e3a8a;
+            --color-primary-light: #3b82f6;
+            --color-primary-dark: #0f172a;
+            --color-accent: #0ea5e9;
+            --color-text-primary: #0f172a;
+            --color-text-secondary: #475569;
+            --color-text-tertiary: #94a3b8;
+            --color-bg-primary: #ffffff;
+            --color-bg-secondary: #f8fafc;
+            --color-bg-tertiary: #f1f5f9;
+            --spacing-unit: 4px;
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            font-family: 'Noto Sans SC', system-ui, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        ::selection {
+            background: rgba(59, 130, 246, 0.2);
+            color: #1e3a8a;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        
+        .gradient-primary {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1e40af 100%);
+        }
+        
+        .gradient-hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 40%, #1d4ed8 100%);
+        }
+        
+        .gradient-overlay {
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.8) 100%);
+        }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .glass-dark {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #3b82f6 0%, #0ea5e9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-primary {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .image-mask {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .image-mask::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(15, 23, 42, 0.6) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .image-mask:hover::after {
+            opacity: 1;
+        }
+        
+        .timeline {
+            position: relative;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #3b82f6, #0ea5e9);
+            transform: translateX(-50%);
+        }
+        
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+        }
+        
+        .form-input {
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 20px;
+            height: 20px;
+            padding: 0 6px;
+            border-radius: 9999px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .hide-mobile {
+                display: none !important;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .hide-desktop {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-secondary-50 text-secondary-900">
+    <!-- 导航栏 -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-cloud text-white text-sm"></i>
+                    </div>
+                    <span class="text-white font-bold text-lg">启云科技</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors">首页</a>
+                    <a href="#about" class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors">关于我们</a>
+                    <a href="#services" class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors">服务介绍</a>
+                    <a href="#cases" class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors">案例展示</a>
+                    <a href="#team" class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors">团队介绍</a>
+                    <a href="#news" class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors">新闻动态</a>
+                    <a href="#careers" class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors">招贤纳士</a>
+                    <a href="#contact" class="nav-link text-white/80 hover:text-white text-sm font-medium transition-colors">联系我们</a>
+                </div>
+                
+                <div class="hidden md:block">
+                    <a href="#contact" class="btn-primary bg-blue-600 hover:bg-blue-500 text-white px-5 py-2 rounded-lg text-sm font-medium">免费咨询</a>
+                </div>
+                
+                <button class="md:hidden text-white p-2" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div id="mobileMenu" class="hidden md:hidden glass-dark border-t border-white/10">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#home" class="block text-white/80 hover:text-white py-2 text-sm">首页</a>
+                <a href="#about" class="block text-white/80 hover:text-white py-2 text-sm">关于我们</a>
+                <a href="#services" class="block text-white/80 hover:text-white py-2 text-sm">服务介绍</a>
+                <a href="#cases" class="block text-white/80 hover:text-white py-2 text-sm">案例展示</a>
+                <a href="#team" class="block text-white/80 hover:text-white py-2 text-sm">团队介绍</a>
+                <a href="#news" class="block text-white/80 hover:text-white py-2 text-sm">新闻动态</a>
+                <a href="#careers" class="block text-white/80 hover:text-white py-2 text-sm">招贤纳士</a>
+                <a href="#contact" class="block text-white/80 hover:text-white py-2 text-sm">联系我们</a>
+                <a href="#contact" class="block bg-blue-600 text-white text-center py-2 rounded-lg text-sm font-medium mt-4">免费咨询</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-16">
+        <!-- 设计系统展示 -->
+        <section id="design-system" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h1 class="text-4xl font-bold text-secondary-900 mb-4">启云科技设计系统</h1>
+                    <p class="text-lg text-secondary-600">现代简约 · 大气稳重 · 科技感 · 专业性</p>
+                </div>
+                
+                <!-- 色彩系统 -->
+                <div class="mb-16">
+                    <h2 class="text-2xl font-bold text-secondary-900 mb-8 pb-2 border-b-2 border-blue-600">色彩系统</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                        <div class="space-y-2">
+                            <div class="h-20 bg-primary-900 rounded-lg"></div>
+                            <p class="text-sm font-medium">主色 900</p>
+                            <p class="text-xs text-secondary-500">#1e3a8a</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-20 bg-primary-800 rounded-lg"></div>
+                            <p class="text-sm font-medium">主色 800</p>
+                            <p class="text-xs text-secondary-500">#1e40af</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-20 bg-primary-700 rounded-lg"></div>
+                            <p class="text-sm font-medium">主色 700</p>
+                            <p class="text-xs text-secondary-500">#1d4ed8</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-20 bg-primary-600 rounded-lg"></div>
+                            <p class="text-sm font-medium">主色 600</p>
+                            <p class="text-xs text-secondary-500">#2563eb</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-20 bg-primary-500 rounded-lg"></div>
+                            <p class="text-sm font-medium">主色 500</p>
+                            <p class="text-xs text-secondary-500">#3b82f6</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-20 bg-primary-100 rounded-lg"></div>
+                            <p class="text-sm font-medium">主色 100</p>
+                            <p class="text-xs text-secondary-500">#dbeafe</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-20 bg-cyan-500 rounded-lg"></div>
+                            <p class="text-sm font-medium">辅助色</p>
+                            <p class="text-xs text-secondary-500">#06b6d4</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-20 bg-sky-500 rounded-lg"></div>
+                            <p class="text-sm font-medium">强调色</p>
+                            <p class="text-xs text-secondary-500">#0ea5e9</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-20 bg-secondary-900 rounded-lg"></div>
+                            <p class="text-sm font-medium">文字主色</p>
+                            <p class="text-xs text-secondary-500">#0f172a</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-20 bg-secondary-600 rounded-lg"></div>
+                            <p class="text-sm font-medium">文字次色</p>
+                            <p class="text-xs text-secondary-500">#475569</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-20 bg-secondary-200 rounded-lg"></div>
+                            <p class="text-sm font-medium">边框色</p>
+                            <p class="text-xs text-secondary-500">#e2e8f0</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-20 bg-secondary-50 rounded-lg border border-secondary-200"></div>
+                            <p class="text-sm font-medium">背景色</p>
+                            <p class="text-xs text-secondary-500">#f8fafc</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-20 bg-green-500 rounded-lg"></div>
+                            <p class="text-sm font-medium">成功</p>
+                            <p class="text-xs text-secondary-500">#22c55e</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-20 bg-yellow-500 rounded-lg"></div>
+                            <p class="text-sm font-medium">警告</p>
+                            <p class="text-xs text-secondary-500">#eab308</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-20 bg-red-500 rounded-lg"></div>
+                            <p class="text-sm font-medium">错误</p>
+                            <p class="text-xs text-secondary-500">#ef4444</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-20 bg-blue-500 rounded-lg"></div>
+                            <p class="text-sm font-medium">信息</p>
+                            <p class="text-xs text-secondary-500">#3b82f6</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 字体规范 -->
+                <div class="mb-16">
+                    <h2 class="text-2xl font-bold text-secondary-900 mb-8 pb-2 border-b-2 border-blue-600">字体规范</h2>
+                    <div class="space-y-6">
+                        <div class="flex items-baseline space-x-4">
+                            <span class="text-xs text-secondary-500 w-20">H1 标题</span>
+                            <h1 class="text-4xl md:text-5xl font-bold text-secondary-900">启云科技 48/56px</h1>
+                        </div>
+                        <div class="flex items-baseline space-x-4">
+                            <span class="text-xs text-secondary-500 w-20">H2 标题</span>
+                            <h2 class="text-3xl md:text-4xl font-bold text-secondary-900">页面标题 36/44px</h2>
+                        </div>
+                        <div class="flex items-baseline space-x-4">
+                            <span class="text-xs text-secondary-500 w-20">H3 标题</span>
+                            <h3 class="text-2xl md:text-3xl font-semibold text-secondary-900">区块标题 28/36px</h3>
+                        </div>
+                        <div class="flex items-baseline space-x-4">
+                            <span class="text-xs text-secondary-500 w-20">H4 标题</span>
+                            <h4 class="text-xl md:text-2xl font-semibold text-secondary-900">卡片标题 22/30px</h4>
+                        </div>
+                        <div class="flex items-baseline space-x-4">
+                            <span class="text-xs text-secondary-500 w-20">正文大</span>
+                            <p class="text-lg text-secondary-700">正文大号 18/28px，用于重要段落</p>
+                        </div>
+                        <div class="flex items-baseline space-x-4">
+                            <span class="text-xs text-secondary-500 w-20">正文</span>
+                            <p class="text-base text-secondary-600">正文常规 16/26px，标准阅读文本</p>
+                        </div>
+                        <div class="flex items-baseline space-x-4">
+                            <span class="text-xs text-secondary-500 w-20">辅助文字</span>
+                            <p class="text-sm text-secondary-500">辅助文字 14/22px，用于说明、标签</p>
+                        </div>
+                        <div class="flex items-baseline space-x-4">
+                            <span class="text-xs text-secondary-500 w-20">小字</span>
+                            <p class="text-xs text-secondary-400">小字 12/18px，用于时间、版权</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 间距系统 -->
+                <div class="mb-16">
+                    <h2 class="text-2xl font-bold text-secondary-900 mb-8 pb-2 border-b-2 border-blue-600">间距系统</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        <div class="space-y-2">
+                            <div class="h-4 w-4 bg-blue-600 rounded"></div>
+                            <p class="text-sm font-medium">4px - 基础单位</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-8 w-8 bg-blue-600 rounded"></div>
+                            <p class="text-sm font-medium">8px - 小间距</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-12 w-12 bg-blue-600 rounded"></div>
+                            <p class="text-sm font-medium">12px - 中间距</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-16 w-16 bg-blue-600 rounded"></div>
+                            <p class="text-sm font-medium">16px - 标准间距</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-20 w-20 bg-blue-600 rounded"></div>
+                            <p class="text-sm font-medium">20px - 组件间距</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-24 w-24 bg-blue-600 rounded"></div>
+                            <p class="text-sm font-medium">24px - 区块间距</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-32 w-32 bg-blue-600 rounded"></div>
+                            <p class="text-sm font-medium">32px - 大间距</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="h-48 w-48 bg-blue-600 rounded"></div>
+                            <p class="text-sm font-medium">48px - 页面间距</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 组件设计 -->
+                <div class="mb-16">
+                    <h2 class="text-2xl font-bold text-secondary-900 mb-8 pb-2 border-b-2 border-blue-600">组件设计</h2>
+                    
+                    <div class="mb-10">
+                        <h3 class="text-lg font-semibold text-secondary-800 mb-4">按钮</h3>
+                        <div class="flex flex-wrap gap-4">
+                            <button class="btn-primary bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium">主按钮</button>
+                            <button class="bg-white border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-lg font-medium transition-colors">次按钮</button>
+                            <button class="text-blue-600 hover:text-blue-700 font-medium flex items-center gap-2">文字按钮 <i class="fas fa-arrow-right"></i></button>
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium">小按钮</button>
+                            <button class="bg-blue-600 text-white px-8 py-4 rounded-xl text-lg font-medium">大按钮</button>
+                            <button class="bg-secondary-200 text-secondary-400 px-6 py-3 rounded-lg font-medium cursor-not-allowed" disabled>禁用按钮</button>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-10">
+                        <h3 class="text-lg font-semibold text-secondary-800 mb-4">卡片</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="bg-white rounded-xl p-6 shadow-card card-hover border border-secondary-100">
+                                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                                    <i class="fas fa-mobile-alt text-blue-600 text-xl"></i>
+                                </div>
+                                <h4 class="text-lg font-semibold text-secondary-900 mb-2">小程序开发</h4>
+                                <p class="text-sm text-secondary-600 mb-4">微信/支付宝/抖音小程序定制开发，快速触达用户</p>
+                                <a href="#" class="text-blue-600 text-sm font-medium hover:underline">了解详情 →</a>
+                            </div>
+                            
+                            <div class="bg-white rounded-xl overflow-hidden shadow-card card-hover border border-secondary-100">
+                                <div class="h-40 bg-gradient-to-br from-blue-500 to-cyan-400"></div>
+                                <div class="p-5">
+                                    <div class="flex gap-2 mb-2">
+                                        <span class="tag bg-blue-100 text-blue-700">电商</span>
+                                        <span class="tag bg-cyan-100 text-cyan-700">小程序</span>
+                                    </div>
+                                    <h4 class="text-lg font-semibold text-secondary-900 mb-1">智慧商城小程序</h4>
+                                    <p class="text-sm text-secondary-500">某知名零售品牌</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-xl p-5 shadow-card card-hover border border-secondary-100 flex gap-4">
+                                <div class="w-20 h-20 bg-secondary-100 rounded-lg flex-shrink-0"></div>
+                                <div class="flex-1">
+                                    <span class="tag bg-blue-100 text-blue-700 text-xs mb-2">公司新闻</span>
+                                    <h4 class="text-base font-semibold text-secondary-900 mb-1 line-clamp-2">启云科技荣获2024年度优秀软件企业称号</h4>
+                                    <p class="text-xs text-secondary-400">2024-03-11</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-10">
+                        <h3 class="text-lg font-semibold text-secondary-800 mb-4">表单</h3>
+                        <div class="max-w-md space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-secondary-700 mb-1">姓名</label>
+                                <input type="text" class="form-input w-full px-4 py-3 border border-secondary-200 rounded-lg focus:outline-none" placeholder="请输入您的姓名">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-secondary-700 mb-1">需求类型</label>
+                                <select class="form-input w-full px-4 py-3 border border-secondary-200 rounded-lg focus:outline-none bg-white">
+                                    <option>小程序开发</option>
+                                    <option>APP开发</option>
+                                    <option>网站开发</option>
+                                    <option>其他</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-secondary-700 mb-1">需求描述</label>
+                                <textarea class="form-input w-full px-4 py-3 border border-secondary-200 rounded-lg focus:outline-none h-24 resize-none" placeholder="请描述您的需求..."></textarea>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <input type="checkbox" id="agree" class="w-4 h-4 text-blue-600 border-secondary-300 rounded focus:ring-blue-500">
+                                <label for="agree" class="text-sm text-secondary-600">我同意隐私政策</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-10">
+                        <h3 class="text-lg font-semibold text-secondary-800 mb-4">标签与徽章</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="tag bg-blue-100 text-blue-700">小程序</span>
+                            <span class="tag bg-cyan-100 text-cyan-700">APP</span>
+                            <span class="tag bg-purple-100 text-purple-700">网站</span>
+                            <span class="tag bg-green-100 text-green-700">电商</span>
+                            <span class="tag bg-orange-100 text-orange-700">教育</span>
+                            <span class="tag bg-red-100 text-red-700">急招</span>
+                            <span class="badge bg-red-500 text-white">3</span>
+                            <span class="badge bg-blue-500 text-white">New</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>

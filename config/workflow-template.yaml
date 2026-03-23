@@ -1,0 +1,188 @@
+# 工作流配置模板
+# 用于定义项目特定的智能体协同工作流
+
+project:
+  name: "示例项目"
+  description: "这是一个示例项目配置"
+  
+# 团队配置
+team:
+  云捌:
+    role: "项目与产品负责人"
+    model: "zhipu/glm-4.7"
+    priority: 1
+    
+  云肆:
+    role: "设计经理"
+    model: "aliyun/qwen-plus"
+    fallback_model: "moonshot/kimi-k2.5"
+    priority: 2
+    
+  云伍:
+    role: "前端经理"
+    model: "aliyun/qwen-plus"
+    priority: 3
+    
+  云陆:
+    role: "后端经理"
+    model: "aliyun/qwen-plus"
+    priority: 3
+    
+  云柒:
+    role: "测试经理"
+    model: "aliyun/qwen-plus"
+    priority: 4
+
+# 任务定义
+tasks:
+  需求分析:
+    agent: "云捌"
+    description: "分析项目需求，制定产品规划"
+    dependencies: []
+    outputs:
+      - "PRD文档"
+      - "产品规划"
+    timeout: 120
+    
+  UI设计:
+    agent: "云肆"
+    description: "设计用户界面和交互方案"
+    dependencies:
+      - "需求分析"
+    outputs:
+      - "设计稿"
+      - "UI规范"
+    timeout: 240
+    
+  架构设计:
+    agent: "云陆"
+    description: "设计系统架构和技术方案"
+    dependencies:
+      - "需求分析"
+    outputs:
+      - "架构文档"
+      - "技术方案"
+    timeout: 180
+    
+  前端开发:
+    agent: "云伍"
+    description: "实现前端界面和交互功能"
+    dependencies:
+      - "UI设计"
+    outputs:
+      - "前端代码"
+      - "组件库"
+    timeout: 480
+    
+  后端开发:
+    agent: "云陆"
+    description: "设计和实现后端API"
+    dependencies:
+      - "架构设计"
+    outputs:
+      - "API文档"
+      - "后端代码"
+    timeout: 480
+    
+  接口联调:
+    agent: "云伍"
+    description: "前后端接口对接和调试"
+    dependencies:
+      - "前端开发"
+      - "后端开发"
+    outputs:
+      - "联调报告"
+    timeout: 240
+    
+  测试验收:
+    agent: "云柒"
+    description: "执行测试用例，质量验收"
+    dependencies:
+      - "接口联调"
+    outputs:
+      - "测试报告"
+      - "Bug列表"
+    timeout: 240
+
+# 工作流定义
+workflows:
+  # 完整流程
+  full:
+    name: "完整开发流程"
+    tasks:
+      - "需求分析"
+      - "UI设计"
+      - "架构设计"
+      - "前端开发"
+      - "后端开发"
+      - "接口联调"
+      - "测试验收"
+      
+  # 快速流程
+  quick:
+    name: "快速迭代流程"
+    tasks:
+      - "需求分析"
+      - "UI设计"
+      - "前端开发"
+      - "测试验收"
+      
+  # 仅前端
+  frontend_only:
+    name: "前端开发流程"
+    tasks:
+      - "UI设计"
+      - "前端开发"
+      - "测试验收"
+
+# 质量检查规则
+quality_checks:
+  default:
+    - name: "非空检查"
+      type: "not_empty"
+      min_length: 100
+      
+    - name: "格式检查"
+      type: "format"
+      patterns:
+        - "【"
+        - "#"
+        
+    - name: "关键字检查"
+      type: "keywords"
+      keywords:
+        - "完成"
+        - "实现"
+        - "设计"
+
+# 通知配置
+notifications:
+  on_start: true
+  on_complete: true
+  on_failure: true
+  channels:
+    - "console"
+    # - "feishu"  # 如需飞书通知，取消注释
+
+# 性能优化
+optimization:
+  # 并行度限制
+  max_parallel: 3
+  
+  # 缓存策略
+  cache:
+    enabled: true
+    ttl: 3600
+    
+  # 失败重试
+  retry:
+    enabled: true
+    max_attempts: 3
+    delay: 1000
+    
+  # 备用模型
+  fallback:
+    enabled: true
+    models:
+      - "moonshot/kimi-k2.5"
+      - "zhipu/glm-4.7"

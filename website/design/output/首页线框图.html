@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页线框图 - Wireframe</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; }
+        .wireframe { max-width: 1200px; margin: 0 auto; background: white; }
+        
+        /* 导航栏 */
+        .header {
+            height: 70px;
+            border-bottom: 2px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+        }
+        .logo { width: 150px; height: 40px; background: #333; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; }
+        .nav { display: flex; gap: 30px; }
+        .nav-item { padding: 8px 16px; background: #e0e0e0; border-radius: 4px; font-size: 14px; }
+        .header-tools { display: flex; gap: 15px; }
+        .tool-btn { width: 40px; height: 40px; background: #e0e0e0; border-radius: 4px; }
+        
+        /* Hero区 */
+        .hero {
+            height: 600px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 40px;
+        }
+        .hero-label { 
+            padding: 8px 20px; 
+            border: 1px solid rgba(255,255,255,0.3); 
+            border-radius: 20px; 
+            font-size: 12px; 
+            margin-bottom: 30px;
+            background: rgba(255,255,255,0.1);
+        }
+        .hero-title { font-size: 48px; font-weight: 300; margin-bottom: 20px; letter-spacing: 2px; }
+        .hero-subtitle { font-size: 18px; opacity: 0.8; margin-bottom: 40px; max-width: 600px; line-height: 1.6; }
+        .hero-cta { display: flex; gap: 20px; }
+        .btn-primary { padding: 15px 40px; background: white; color: #1a1a2e; border-radius: 4px; font-weight: 500; }
+        .btn-secondary { padding: 15px 40px; border: 1px solid rgba(255,255,255,0.5); border-radius: 4px; }
+        
+        /* 核心业务 */
+        .section { padding: 100px 40px; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 36px; font-weight: 300; margin-bottom: 15px; }
+        .section-title p { color: #666; font-size: 16px; }
+        
+        .business-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .business-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .business-card:hover { box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+        .card-icon { width: 80px; height: 80px; background: #f5f5f5; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 32px; }
+        .card-title { font-size: 20px; margin-bottom: 10px; }
+        .card-desc { color: #666; font-size: 14px; line-height: 1.6; margin-bottom: 20px; }
+        .card-link { color: #333; font-size: 14px; font-weight: 500; }
+        
+        /* 数据展示 */
+        .stats-section { background: #1a1a2e; color: white; padding: 80px 40px; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+        .stat-number { font-size: 48px; font-weight: 300; margin-bottom: 10px; }
+        .stat-label { font-size: 14px; opacity: 0.7; }
+        
+        /* 产品亮点 */
+        .product-showcase { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-top: 40px; }
+        .product-content h3 { font-size: 32px; font-weight: 300; margin-bottom: 20px; }
+        .product-content p { color: #666; line-height: 1.8; margin-bottom: 30px; }
+        .product-features { list-style: none; }
+        .product-features li { padding: 10px 0; padding-left: 30px; position: relative; }
+        .product-features li::before { content: "✓"; position: absolute; left: 0; color: #333; font-weight: bold; }
+        .product-image { 
+            height: 400px; 
+            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%); 
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #999;
+        }
+        
+        /* 成功案例 */
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .case-card {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+        }
+        .case-image { height: 200px; background: #f5f5f5; display: flex; align-items: center; justify-content: center; color: #999; }
+        .case-content { padding: 25px; }
+        .case-tag { font-size: 12px; color: #666; margin-bottom: 10px; }
+        .case-title { font-size: 18px; margin-bottom: 10px; }
+        .case-desc { font-size: 14px; color: #666; line-height: 1.5; }
+        
+        /* 新闻动态 */
+        .news-list { max-width: 800px; margin: 0 auto; }
+        .news-item {
+            display: flex;
+            gap: 30px;
+            padding: 30px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .news-date { text-align: center; min-width: 60px; }
+        .news-date .day { font-size: 32px; font-weight: 300; }
+        .news-date .month { font-size: 12px; color: #666; }
+        .news-content { flex: 1; }
+        .news-title { font-size: 18px; margin-bottom: 10px; }
+        .news-summary { font-size: 14px; color: #666; line-height: 1.6; }
+        
+        /* CTA区 */
+        .cta-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            text-align: center;
+            padding: 100px 40px;
+        }
+        .cta-section h2 { font-size: 36px; font-weight: 300; margin-bottom: 20px; }
+        .cta-section p { font-size: 16px; opacity: 0.8; margin-bottom: 40px; }
+        
+        /* Footer */
+        .footer { background: #0f0f1a; color: white; padding: 80px 40px 40px; }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+        .footer-brand .logo { margin-bottom: 20px; }
+        .footer-brand p { font-size: 14px; opacity: 0.7; line-height: 1.8; }
+        .footer-title { font-size: 14px; font-weight: 600; margin-bottom: 20px; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 14px; }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="wireframe">
+        <!-- 导航栏 -->
+        <header class="header">
+            <div class="logo">LOGO</div>
+            <nav class="nav">
+                <div class="nav-item">首页</div>
+                <div class="nav-item">关于我们</div>
+                <div class="nav-item">产品服务</div>
+                <div class="nav-item">解决方案</div>
+                <div class="nav-item">新闻动态</div>
+                <div class="nav-item">联系我们</div>
+            </nav>
+            <div class="header-tools">
+                <div class="tool-btn" title="语言"></div>
+                <div class="tool-btn" title="搜索"></div>
+            </div>
+        </header>
+
+        <!-- Hero区 -->
+        <section class="hero">
+            <div class="hero-label">创新科技 · 智领未来</div>
+            <h1 class="hero-title">让科技赋能商业价值</h1>
+            <p class="hero-subtitle">我们致力于为企业提供领先的数字化解决方案，助力客户在数字经济时代实现转型升级</p>
+            <div class="hero-cta">
+                <div class="btn-primary">了解我们</div>
+                <div class="btn-secondary">联系我们</div>
+            </div>
+        </section>
+
+        <!-- 核心业务 -->
+        <section class="section">
+            <div class="section-title">
+                <h2>核心业务</h2>
+                <p>聚焦前沿技术，打造行业领先的解决方案</p>
+            </div>
+            <div class="business-grid">
+                <div class="business-card">
+                    <div class="card-icon">💡</div>
+                    <h3 class="card-title">智能解决方案</h3>
+                    <p class="card-desc">基于AI和大数据技术的智能化解决方案，帮助企业实现数字化转型</p>
+                    <div class="card-link">了解更多 →</div>
+                </div>
+                <div class="business-card">
+                    <div class="card-icon">🚀</div>
+                    <h3 class="card-title">技术服务</h3>
+                    <p class="card-desc">专业的技术咨询和实施服务，从规划到落地全程护航</p>
+                    <div class="card-link">了解更多 →</div>
+                </div>
+                <div class="business-card">
+                    <div class="card-icon">🌐</div>
+                    <h3 class="card-title">平台产品</h3>
+                    <p class="card-desc">自主研发的企业级平台产品，稳定可靠，易于扩展</p>
+                    <div class="card-link">了解更多 →</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 数据展示 -->
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">服务客户</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">覆盖城市</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">客户满意度</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10年</div>
+                    <div class="stat-label">行业经验</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 产品亮点 -->
+        <section class="section">
+            <div class="section-title">
+                <h2>核心产品</h2>
+                <p>自主研发，持续创新</p>
+            </div>
+            <div class="product-showcase">
+                <div class="product-content">
+                    <h3>智能数据中台</h3>
+                    <p>一站式数据管理平台，集成数据采集、存储、处理、分析全链路能力，帮助企业构建数据资产，释放数据价值。</p>
+                    <ul class="product-features">
+                        <li>多源数据统一接入</li>
+                        <li>实时数据处理引擎</li>
+                        <li>可视化数据分析</li>
+                        <li>企业级安全保障</li>
+                    </ul>
+                    <div class="btn-primary" style="display: inline-block; margin-top: 20px;">查看详情</div>
+                </div>
+                <div class="product-image">[产品界面截图]</div>
+            </div>
+        </section>
+
+        <!-- 成功案例 -->
+        <section class="section" style="background: #f9f9f9;">
+            <div class="section-title">
+                <h2>成功案例</h2>
+                <p>与行业领先企业携手共创价值</p>
+            </div>
+            <div class="cases-grid">
+                <div class="case-card">
+                    <div class="case-image">[案例图片]</div>
+                    <div class="case-content">
+                        <div class="case-tag">金融科技</div>
+                        <h4 class="case-title">某大型银行数字化转型</h4>
+                        <p class="case-desc">通过智能风控系统，帮助客户提升风控效率80%</p>
+                    </div>
+                </div>
+                <div class="case-card">
+                    <div class="case-image">[案例图片]</div>
+                    <div class="case-content">
+                        <div class="case-tag">智能制造</div>
+                        <h4 class="case-title">制造业智能升级方案</h4>
+                        <p class="case-desc">实现生产全流程数字化，产能提升35%</p>
+                    </div>
+                </div>
+                <div class="case-card">
+                    <div class="case-image">[案例图片]</div>
+                    <div class="case-content">
+                        <div class="case-tag">新零售</div>
+                        <h4 class="case-title">零售巨头数据中台建设</h4>
+                        <p class="case-desc">构建全渠道数据体系，精准营销ROI提升200%</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 新闻动态 -->
+        <section class="section">
+            <div class="section-title">
+                <h2>新闻动态</h2>
+                <p>了解我们的最新动态</p>
+            </div>
+            <div class="news-list">
+                <div class="news-item">
+                    <div class="news-date">
+                        <div class="day">15</div>
+                        <div class="month">2026.03</div>
+                    </div>
+                    <div class="news-content">
+                        <h4 class="news-title">公司荣获"年度最佳科技创新企业"奖项</h4>
+                        <p class="news-summary">在2026年度科技峰会上，我司凭借在人工智能领域的突出贡献，荣获年度最佳科技创新企业奖项...</p>
+                    </div>
+                </div>
+                <div class="news-item">
+                    <div class="news-date">
+                        <div class="day">08</div>
+                        <div class="month">2026.03</div>
+                    </div>
+                    <div class="news-content">
+                        <h4 class="news-title">新一代智能平台V3.0正式发布</h4>
+                        <p class="news-summary">经过两年的研发迭代，我们正式发布新一代智能平台V3.0版本，带来更强大的AI能力和更优的用户体验...</p>
+                    </div>
+                </div>
+                <div class="news-item">
+                    <div class="news-date">
+                        <div class="day">28</div>
+                        <div class="month">2026.02</div>
+                    </div>
+                    <div class="news-content">
+                        <h4 class="news-title">与某世界500强企业达成战略合作</h4>
+                        <p class="news-summary">双方将在数字化转型领域展开深度合作，共同探索行业创新解决方案...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA区 -->
+        <section class="cta-section">
+            <h2>开启数字化转型之旅</h2>
+            <p>联系我们的专家团队，获取专属解决方案</p>
+            <div class="hero-cta">
+                <div class="btn-primary">免费咨询</div>
+                <div class="btn-secondary">查看方案</div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">LOGO</div>
+                    <p>致力于为企业提供领先的数字化解决方案，<br>助力客户在数字经济时代实现转型升级。</p>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">产品服务</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">智能解决方案</a></li>
+                        <li><a href="#">技术服务</a></li>
+                        <li><a href="#">平台产品</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">关于我们</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">公司简介</a></li>
+                        <li><a href="#">发展历程</a></li>
+                        <li><a href="#">加入我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title">联系方式</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">在线咨询</a></li>
+                        <li><a href="#">电话：400-XXX-XXXX</a></li>
+                        <li><a href="#">邮箱：contact@company.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>© 2026 Company Name. All rights reserved.</div>
+                <div>隐私政策 | 服务条款 | 网站地图</div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
