@@ -1,20 +1,30 @@
 package com.dazi.activity.repository;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dazi.activity.entity.Activity;
-import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import java.util.List;
+import org.apache.ibatis.annotations.Update;
+import org.springframework.stereotype.Repository;
 
-@Mapper
+@Repository
 public interface ActivityRepository extends BaseMapper<Activity> {
     
-    @Select("SELECT * FROM activity WHERE status = 1 AND deleted = 0 AND end_time > NOW() ORDER BY create_time DESC")
-    List<Activity> findActiveActivities();
+    @Select("SELECT * FROM activity WHERE type_name = #{typeName} AND status = 1 AND deleted = 0 ORDER BY create_time DESC")
+    Page<Activity> findByTypeName(Page<Activity> page, @Param("typeName") String typeName);
     
-    @Select("SELECT * FROM activity WHERE user_id = #{userId} AND deleted = 0 ORDER BY create_time DESC")
-    List<Activity> findByUserId(Long userId);
+    /**
+     * 乐观锁增加参与人数
+     */
+    @Update("UPDATE activity SET current_participants = current_participants + 1, version = version + 1 " +
+            "WHERE id = #{activityId} AND version = #{version} AND current_participants < max_participants")
+    int increaseParticipantCount(@Param("activityId") Long activityId, @Param("version") Integer version);
     
-    @Select("SELECT * FROM activity WHERE type = #{type} AND status = 1 AND deleted = 0 AND end_time > NOW()")
-    List<Activity> findByType(Integer type);
+    /**
+     * 减少参与人数
+     */
+    @Update("UPDATE activity SET current_participants = current_participants - 1 " +
+            "WHERE id = #{activityId} AND current_participants > 0")
+    int decreaseParticipantCount(@Param("activityId") Long activityId);
 }

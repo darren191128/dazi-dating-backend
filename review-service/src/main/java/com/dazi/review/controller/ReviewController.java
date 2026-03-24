@@ -3,6 +3,7 @@ package com.dazi.review.controller;
 import com.dazi.common.result.Result;
 import com.dazi.review.entity.Review;
 import com.dazi.review.service.ReviewService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,16 +20,37 @@ public class ReviewController {
     /**
      * 提交评价
      */
-    @PostMapping("/submit")
-    public Result<Long> submitReview(@RequestBody Review review) {
+    @PostMapping
+    public Result<Long> submitReview(
+            HttpServletRequest request,
+            @RequestBody Review review) {
+        
+        Long userId = (Long) request.getAttribute("currentUserId");
+        review.setReviewerId(userId);
+        
         return reviewService.submitReview(review);
     }
     
     /**
      * 获取用户评价
      */
-    @GetMapping("/user/{userId}")
-    public Result<List<Review>> getUserReviews(@PathVariable Long userId) {
+    @GetMapping("/list")
+    public Result<List<Review>> getReviews(
+            @RequestParam(required = false) Long userId) {
+        
+        if (userId == null) {
+            return Result.error("用户ID不能为空");
+        }
+        
+        return reviewService.getUserReviews(userId);
+    }
+    
+    /**
+     * 获取我的评价
+     */
+    @GetMapping("/my")
+    public Result<List<Review>> getMyReviews(HttpServletRequest request) {
+        Long userId = (Long) request.getAttribute("currentUserId");
         return reviewService.getUserReviews(userId);
     }
     

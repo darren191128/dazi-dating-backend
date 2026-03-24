@@ -1,19 +1,24 @@
 package com.dazi.activity.controller;
 
-import com.dazi.activity.entity.Activity;
 import com.dazi.activity.service.ActivityService;
+import com.dazi.common.annotation.Log;
+import com.dazi.common.dto.CreateActivityDTO;
+import com.dazi.common.dto.PageQueryDTO;
 import com.dazi.common.result.Result;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/api/activity")
 @RequiredArgsConstructor
+@Validated
 public class ActivityController {
     
     private final ActivityService activityService;
@@ -21,55 +26,31 @@ public class ActivityController {
     /**
      * 发布活动
      */
-    @PostMapping("/create")
+    @PostMapping
+    @Log(operation = "发布活动", type = "CREATE", logParams = true)
     public Result<Long> createActivity(
-            @RequestParam Long userId,
-            @RequestParam String title,
-            @RequestParam String description,
-            @RequestParam Integer type,
-            @RequestParam String typeName,
-            @RequestParam LocalDateTime startTime,
-            @RequestParam LocalDateTime endTime,
-            @RequestParam String location,
-            @RequestParam Integer minParticipants,
-            @RequestParam Integer maxParticipants,
-            @RequestParam Integer paymentType,
-            @RequestParam BigDecimal totalAmount,
-            @RequestParam LocalDateTime registrationDeadline) {
+            HttpServletRequest request,
+            @Valid @RequestBody CreateActivityDTO activityDTO) {
         
-        Activity activity = new Activity();
-        activity.setUserId(userId);
-        activity.setTitle(title);
-        activity.setDescription(description);
-        activity.setType(type);
-        activity.setTypeName(typeName);
-        activity.setStartTime(startTime);
-        activity.setEndTime(endTime);
-        activity.setLocation(location);
-        activity.setMinParticipants(minParticipants);
-        activity.setMaxParticipants(maxParticipants);
-        activity.setPaymentType(paymentType);
-        activity.setTotalAmount(totalAmount);
-        activity.setRegistrationDeadline(registrationDeadline);
-        
-        return activityService.createActivity(activity);
+        Long userId = (Long) request.getAttribute("currentUserId");
+        return activityService.createActivity(userId, activityDTO);
     }
     
     /**
      * 获取活动列表
      */
     @GetMapping("/list")
-    public Result<List<Activity>> getActivityList(
-            @RequestParam(required = false) Integer type,
-            @RequestParam(defaultValue = "1") Integer page,
-            @RequestParam(defaultValue = "10") Integer size) {
-        return activityService.getActivityList(type, page, size);
+    public Result<Map<String, Object>> getActivityList(
+            @RequestParam(required = false) String type,
+            @Valid PageQueryDTO queryDTO) {
+        
+        return activityService.getActivityList(type, queryDTO.getPage(), queryDTO.getPageSize());
     }
     
     /**
      * 获取活动详情
      */
-    @GetMapping("/detail/{activityId}")
+    @GetMapping("/{activityId}")
     public Result<Map<String, Object>> getActivityDetail(@PathVariable Long activityId) {
         return activityService.getActivityDetail(activityId);
     }
@@ -77,36 +58,34 @@ public class ActivityController {
     /**
      * 报名活动
      */
-    @PostMapping("/join/{activityId}")
+    @PostMapping("/{activityId}/join")
+    @Log(operation = "报名活动", type = "CREATE", logParams = true)
     public Result<Void> joinActivity(
-            @PathVariable Long activityId,
-            @RequestParam Long userId) {
+            HttpServletRequest request,
+            @PathVariable @NotNull(message = "活动ID不能为空") Long activityId) {
+        
+        Long userId = (Long) request.getAttribute("currentUserId");
         return activityService.joinActivity(activityId, userId);
     }
     
     /**
      * 取消报名
      */
-    @PostMapping("/quit/{activityId}")
-    public Result<Void> quitActivity(
-            @PathVariable Long activityId,
-            @RequestParam Long userId) {
+    @PostMapping("/{activityId}/cancel")
+    @Log(operation = "取消报名", type = "DELETE", logParams = true)
+    public Result<Void> cancelJoin(
+            HttpServletRequest request,
+            @PathVariable @NotNull(message = "活动ID不能为空") Long activityId) {
+        
+        Long userId = (Long) request.getAttribute("currentUserId");
         return activityService.quitActivity(activityId, userId);
     }
     
     /**
-     * 获取我发布的活动
+     * 获取活动类型
      */
-    @GetMapping("/my/published/{userId}")
-    public Result<List<Activity>> getMyPublishedActivities(@PathVariable Long userId) {
-        return activityService.getMyPublishedActivities(userId);
-    }
-    
-    /**
-     * 获取我参与的活动
-     */
-    @GetMapping("/my/joined/{userId}")
-    public Result<List<Activity>> getMyJoinedActivities(@PathVariable Long userId) {
-        return activityService.getMyJoinedActivities(userId);
+    @GetMapping("/types")
+    public Result<List<Map<String, Object>>> getActivityTypes() {
+        return activityService.getActivityTypes();
     }
 }

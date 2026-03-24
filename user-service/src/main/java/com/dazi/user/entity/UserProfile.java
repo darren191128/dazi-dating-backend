@@ -37,6 +37,23 @@ public class UserProfile {
     
     private String idCard;
     
+    // 高级筛选字段
+    private Integer height;
+    
+    private String education;
+    
+    private String occupation;
+    
+    private Integer income;
+    
+    private Integer hasHouse;
+    
+    private Integer hasCar;
+    
+    private String maritalStatus;
+    
+    private Integer profileCompleteness;
+    
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
     

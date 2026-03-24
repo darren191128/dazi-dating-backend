@@ -13,24 +13,66 @@ spring:
         - id: user-service
           uri: lb://user-service
           predicates:
-            - Path=/api/user/**
+            - Path=/user/**
+          filters:
+            - AuthFilter
         - id: activity-service
           uri: lb://activity-service
           predicates:
-            - Path=/api/activity/**
+            - Path=/activity/**
+          filters:
+            - AuthFilter
         - id: match-service
           uri: lb://match-service
           predicates:
-            - Path=/api/match/**
+            - Path=/match/**
+          filters:
+            - AuthFilter
         - id: payment-service
           uri: lb://payment-service
           predicates:
-            - Path=/api/payment/**
+            - Path=/payment/**
+          filters:
+            - AuthFilter
         - id: message-service
           uri: lb://message-service
           predicates:
-            - Path=/api/message/**
+            - Path=/message/**
+          filters:
+            - AuthFilter
         - id: review-service
           uri: lb://review-service
           predicates:
-            - Path=/api/review/**
+            - Path=/review/**
+          filters:
+            - AuthFilter
+        - id: admin-service
+          uri: lb://admin-service
+          predicates:
+            - Path=/admin/**
+          filters:
+            - AuthFilter
+        - id: moment-service
+          uri: lb://moment-service
+          predicates:
+            - Path=/moment/**
+          filters:
+            - AuthFilter
+        - id: vip-service
+          uri: lb://vip-service
+          predicates:
+            - Path=/vip/**
+          filters:
+            - AuthFilter
+        - id: gift-service
+          uri: lb://gift-service
+          predicates:
+            - Path=/gift/**
+          filters:
+            - AuthFilter
+        - id: rtc-service
+          uri: lb://rtc-service
+          predicates:
+            - Path=/rtc/**
+          filters:
+            - AuthFilter

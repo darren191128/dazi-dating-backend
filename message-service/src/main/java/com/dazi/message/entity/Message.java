@@ -17,11 +17,29 @@ public class Message {
     
     private Long activityId;
     
+    /**
+     * 消息类型: 1-系统消息, 2-活动消息
+     */
     private Integer type;
+    
+    /**
+     * 消息内容类型: text-文本, voice-语音, image-图片
+     */
+    private String messageType;
     
     private String content;
     
     private String imageUrl;
+    
+    /**
+     * 语音URL
+     */
+    private String voiceUrl;
+    
+    /**
+     * 语音时长(秒)
+     */
+    private Integer voiceDuration;
     
     private Integer status;
     
